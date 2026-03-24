@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YouMove Mobility Scooters | Dallas Reggae Festival 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #0D0D0D;
+      --deep:    #111A10;
+      --green:   #2A6B35;
+      --bright-green: #3CB04A;
+      --yellow:  #F5C518;
+      --red:     #C0392B;
+      --gold:    #E8A020;
+      --cream:   #FBF6E9;
+      --warm:    #FFF9EC;
+      --muted:   #8A8070;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--black);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* ─── ANIMATED BACKGROUND STRIPES ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 60px,
+        rgba(42,107,53,0.03) 60px,
+        rgba(42,107,53,0.03) 61px
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 3rem;
+      background: rgba(13,13,13,0.93);
+      backdrop-filter: blur(14px);
+      border-bottom: 2px solid var(--green);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.1em;
+      color: var(--cream);
+    }
+
+    .nav-logo span { color: var(--yellow); }
+
+    .nav-badge {
+      background: var(--green);
+      color: var(--cream);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+    }
+
+    .nav-cta {
+      background: var(--yellow);
+      color: var(--black);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.55rem 1.3rem;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .nav-cta:hover { background: var(--gold); transform: translateY(-1px); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Reggae color bars at top */
+    .reggae-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      display: flex;
+    }
+    .reggae-bar span:nth-child(1) { flex: 1; background: var(--red); }
+    .reggae-bar span:nth-child(2) { flex: 1; background: var(--yellow); }
+    .reggae-bar span:nth-child(3) { flex: 1; background: var(--bright-green); }
+
+    /* Radial glow */
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(42,107,53,0.22) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .event-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(245,197,24,0.12);
+      border: 1px solid rgba(245,197,24,0.4);
+      color: var(--yellow);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      margin-bottom: 2rem;
+      animation: fadeDown 0.7s ease both;
+    }
+
+    .event-pill::before {
+      content: '🎵';
+      font-size: 0.9rem;
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 9vw, 8rem);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      color: var(--cream);
+      margin-bottom: 1rem;
+      animation: fadeUp 0.8s ease 0.1s both;
+    }
+
+    .hero h1 .highlight {
+      color: var(--yellow);
+      display: block;
+    }
+
+    .hero h1 .sub-highlight {
+      color: var(--bright-green);
+    }
+
+    .hero-sub {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 2.2vw, 1.35rem);
+      color: rgba(251,246,233,0.7);
+      max-width: 600px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.8s ease 0.2s both;
+    }
+
+    /* Event details strip */
+    .event-details {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+      animation: fadeUp 0.8s ease 0.3s both;
+    }
+
+    .detail-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--cream);
+      letter-spacing: 0.04em;
+    }
+
+    .detail-item .icon {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: rgba(42,107,53,0.3);
+      border: 1px solid var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeUp 0.8s ease 0.4s both;
+    }
+
+    .btn-primary {
+      background: var(--yellow);
+      color: var(--black);
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 1rem 2.2rem;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover { background: var(--gold); transform: translateY(-2px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--cream);
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 1rem 2rem;
+      border-radius: 3px;
+      border: 1.5px solid rgba(251,246,233,0.3);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-outline:hover { border-color: var(--yellow); color: var(--yellow); }
+
+    /* ─── WAVE DIVIDER ─── */
+    .wave {
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    .wave svg { display: block; width: 100%; }
+
+    /* ─── SECTIONS ─── */
+    section { position: relative; z-index: 1; }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 2.5rem;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 0.7rem;
+    }
+
+    h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      letter-spacing: 0.04em;
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+
+    /* ─── WHY SECTION ─── */
+    .why-section { background: var(--deep); }
+
+    .why-section h2 { color: var(--cream); }
+
+    .why-intro {
+      color: rgba(251,246,233,0.6);
+      font-size: 1rem;
+      font-weight: 300;
+      max-width: 560px;
+      line-height: 1.8;
+      margin-bottom: 3.5rem;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .why-card {
+      background: rgba(251,246,233,0.04);
+      border: 1px solid rgba(251,246,233,0.08);
+      border-top: 3px solid var(--green);
+      border-radius: 4px;
+      padding: 2rem 1.8rem;
+      transition: border-top-color 0.25s, transform 0.2s;
+    }
+
+    .why-card:hover { border-top-color: var(--yellow); transform: translateY(-4px); }
+
+    .why-card .card-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+
+    .why-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.06em;
+      color: var(--cream);
+      margin-bottom: 0.7rem;
+    }
+
+    .why-card p {
+      font-size: 0.88rem;
+      color: rgba(251,246,233,0.55);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ─── SCHEDULE SECTION ─── */
+    .schedule-section { background: var(--black); }
+
+    .schedule-section h2 { color: var(--yellow); }
+
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .day-card {
+      background: rgba(42,107,53,0.1);
+      border: 1px solid rgba(42,107,53,0.3);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .day-header {
+      background: var(--green);
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .day-header h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.1em;
+      color: var(--cream);
+    }
+
+    .day-header .day-time {
+      font-size: 0.8rem;
+      color: rgba(251,246,233,0.8);
+      font-weight: 600;
+    }
+
+    .day-body { padding: 1.5rem; }
+
+    .day-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(251,246,233,0.07);
+    }
+
+    .day-feature:last-child { border-bottom: none; }
+
+    .day-feature .feat-icon {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(245,197,24,0.12);
+      border: 1px solid rgba(245,197,24,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .day-feature .feat-text strong {
+      display: block;
+      font-size: 0.88rem;
+      color: var(--cream);
+      margin-bottom: 0.2rem;
+    }
+
+    .day-feature .feat-text span {
+      font-size: 0.8rem;
+      color: rgba(251,246,233,0.5);
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    .how-section { background: var(--deep); }
+    .how-section h2 { color: var(--cream); }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 28px; left: 12%; right: 12%;
+      height: 2px;
+      background: linear-gradient(to right, var(--green), var(--yellow), var(--red));
+      z-index: 0;
+    }
+
+    .step {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-num {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: var(--black);
+      border: 2px solid var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      color: var(--yellow);
+      margin: 0 auto 1.2rem;
+    }
+
+    .step h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.07em;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+    }
+
+    .step p {
+      font-size: 0.82rem;
+      color: rgba(251,246,233,0.5);
+      line-height: 1.6;
+    }
+
+    /* ─── CTA ─── */
+    .cta-section {
+      background: var(--green);
+      text-align: center;
+    }
+
+    .cta-section .section-inner { padding: 5rem 2.5rem; }
+
+    .cta-section h2 {
+      color: var(--cream);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      color: rgba(251,246,233,0.8);
+      font-size: 1.05rem;
+      font-weight: 300;
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .contact-strip {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: rgba(251,246,233,0.85);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--black);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.1em;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-logo span { color: var(--yellow); }
+
+    footer p {
+      font-size: 0.78rem;
+      color: rgba(251,246,233,0.3);
+      margin-top: 0.3rem;
+    }
+
+    .reggae-footer-bar {
+      display: flex;
+      height: 4px;
+      margin-bottom: 1.5rem;
+    }
+
+    .reggae-footer-bar span:nth-child(1) { flex: 1; background: var(--red); }
+    .reggae-footer-bar span:nth-child(2) { flex: 1; background: var(--yellow); }
+    .reggae-footer-bar span:nth-child(3) { flex: 1; background: var(--bright-green); }
+
+    /* ─── FLOATING BADGE ─── */
+    .float-badge {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--yellow);
+      color: var(--black);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      padding: 0.8rem 1.2rem;
+      border-radius: 50px;
+      box-shadow: 0 4px 20px rgba(245,197,24,0.4);
+      text-decoration: none;
+      z-index: 99;
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-15px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(245,197,24,0.4); }
+      50%       { box-shadow: 0 4px 32px rgba(245,197,24,0.75); }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 0.9rem 1.5rem; }
+      .nav-badge { display: none; }
+      .why-grid { grid-template-columns: 1fr; }
+      .schedule-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .steps::before { display: none; }
+      .section-inner { padding: 3.5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- FLOATING BADGE -->
+<a href="#contact" class="float-badge">🛵 Book Your Scooter</a>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">YouMove <span>Mobility</span></div>
+  <div class="nav-badge">🎵 Dallas Reggae Fest 2026</div>
+  <a href="#contact" class="nav-cta">Reserve Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="reggae-bar"><span></span><span></span><span></span></div>
+
+  <div class="event-pill">Dallas Reggae Festival · April 11–12, 2026 · Irving, TX</div>
+
+  <h1>
+    Feel Every<br/>
+    <span class="highlight">Beat.</span>
+    <span class="sub-highlight">Move</span> Free.
+  </h1>
+
+  <p class="hero-sub">
+    Don't let mobility challenges keep you from the music, the culture, and the vibes. YouMove Mobility Scooters keeps you rolling — all festival long.
+  </p>
+
+  <div class="event-details">
+    <div class="detail-item">
+      <div class="icon">📍</div>
+      Levy Event Plaza, Irving TX
+    </div>
+    <div class="detail-item">
+      <div class="icon">📅</div>
+      April 11 & 12, 2026
+    </div>
+    <div class="detail-item">
+      <div class="icon">⏰</div>
+      1PM – 11PM (Sat) · 1PM – 9PM (Sun)
+    </div>
+  </div>
+
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary">🛵 Reserve a Scooter</a>
+    <a href="#how" class="btn-outline">How It Works</a>
+  </div>
+</section>
+
+<!-- WHY SECTION -->
+<section class="why-section">
+  <div class="section-inner">
+    <div class="section-label">Why YouMove</div>
+    <h2>The Festival Is Big.<br/>We Keep You In It.</h2>
+    <p class="why-intro">The Dallas Reggae Festival spans a full outdoor venue with live stages, food vendors, arts & crafts, and wall-to-wall Caribbean culture. That's a lot of ground to cover — and a lot of joy you deserve to experience fully.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="card-icon">🎶</div>
+        <h3>Catch Every Stage</h3>
+        <p>Move freely between stages, vendors, and food stalls without fatigue or pain. The music doesn't stop — and neither should you.</p>
+      </div>
+      <div class="why-card">
+        <div class="card-icon">☀️</div>
+        <h3>Outdoor All Day</h3>
+        <p>Two full days in the Texas spring sun. Our scooters let you pace yourself, rest when you need to, and stay in the experience longer.</p>
+      </div>
+      <div class="why-card">
+        <div class="card-icon">👨‍👩‍👧</div>
+        <h3>Family Friendly</h3>
+        <p>This is a family event. Bring grandma, bring dad, bring anyone who loves reggae but needs a little extra support getting around.</p>
+      </div>
+      <div class="why-card">
+        <div class="card-icon">🛡️</div>
+        <h3>Safe & Maintained</h3>
+        <p>Every scooter is fully charged, cleaned, and safety-checked before each rental. Your comfort and safety is our top priority.</p>
+      </div>
+      <div class="why-card">
+        <div class="card-icon">💛</div>
+        <h3>Woman-Owned Business</h3>
+        <p>YouMove is a local, sole proprietor, woman-owned business. When you rent with us, you support a DFW community entrepreneur.</p>
+      </div>
+      <div class="why-card">
+        <div class="card-icon">⚡</div>
+        <h3>Easy Pickup & Return</h3>
+        <p>Simple, hassle-free check-out at our festival station. Return it when you're done — no complicated process, no stress.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE SECTION -->
+<section class="schedule-section">
+  <div class="section-inner">
+    <div class="section-label">Festival Schedule</div>
+    <h2>Two Days of Vibes.</h2>
+    <p style="color:rgba(251,246,233,0.55); font-weight:300; max-width:500px; line-height:1.7; margin-bottom:0.5rem;">
+      YouMove scooters will be available both days at Levy Event Plaza. Reserve in advance to guarantee your spot.
+    </p>
+    <div class="schedule-grid">
+      <div class="day-card">
+        <div class="day-header">
+          <h3>Saturday · April 11</h3>
+          <span class="day-time">1PM – 11PM</span>
+        </div>
+        <div class="day-body">
+          <div class="day-feature">
+            <div class="feat-icon">🎤</div>
+            <div class="feat-text">
+              <strong>Live Reggae Performances</strong>
+              <span>The Wailers & more on the main stage</span>
+            </div>
+          </div>
+          <div class="day-feature">
+            <div class="feat-icon">🍛</div>
+            <div class="feat-text">
+              <strong>Caribbean Food Village</strong>
+              <span>Jerk chicken, patties, tropical drinks</span>
+            </div>
+          </div>
+          <div class="day-feature">
+            <div class="feat-icon">🎨</div>
+            <div class="feat-text">
+              <strong>Arts, Crafts & Jewelry</strong>
+              <span>Unique vendors from across the region</span>
+            </div>
+          </div>
+          <div class="day-feature">
+            <div class="feat-icon">🛵</div>
+            <div class="feat-text">
+              <strong>YouMove Scooter Station Open</strong>
+              <span>Pick up from 12:30PM — before gates open</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day-card">
+        <div class="day-header">
+          <h3>Sunday · April 12</h3>
+          <span class="day-time">1PM – 9PM</span>
+        </div>
+        <div class="day-body">
+          <div class="day-feature">
+            <div class="feat-icon">🎵</div>
+            <div class="feat-text">
+              <strong>Full Day of Live Music</strong>
+              <span>Local reggae bands & headliners</span>
+            </div>
+          </div>
+          <div class="day-feature">
+            <div class="feat-icon">🌿</div>
+            <div class="feat-text">
+              <strong>Cultural Celebrations</strong>
+              <span>Community unity through reggae</span>
+            </div>
+          </div>
+          <div class="day-feature">
+            <div class="feat-icon">👶</div>
+            <div class="feat-text">
+              <strong>Kids Free Under 10</strong>
+              <span>Bring the whole family out</span>
+            </div>
+          </div>
+          <div class="day-feature">
+            <div class="feat-icon">🛵</div>
+            <div class="feat-text">
+              <strong>YouMove Scooter Station Open</strong>
+              <span>Pick up from 12:30PM — before gates open</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="section-inner">
+    <div class="section-label">Simple Process</div>
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Reserve Online</h4>
+        <p>Book your scooter in advance via our contact form or phone. Spots are limited!</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Pick Up On-Site</h4>
+        <p>Head to the YouMove station at Levy Event Plaza starting at 12:30PM each day.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Enjoy the Festival</h4>
+        <p>Ride freely across the grounds — stages, food vendors, arts & crafts, all of it.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Easy Return</h4>
+        <p>Return to our station when you're done. Simple, fast, no fuss.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / CONTACT -->
+<section class="cta-section" id="contact">
+  <div class="section-inner">
+    <div class="section-label" style="color:var(--yellow);">Reserve Your Spot</div>
+    <h2>Don't Miss a Single Beat</h2>
+    <p>Scooter availability is limited. Contact us today to reserve your mobility scooter for the Dallas Reggae Festival 2026 and make sure you're ready to enjoy every moment.</p>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+      <a href="mailto:[YourEmail@email.com]" class="btn-primary">📧 Email to Reserve</a>
+      <a href="tel:+1XXXXXXXXXX" class="btn-primary" style="background:var(--black); color:var(--cream);">📞 Call Us Now</a>
+    </div>
+    <div class="contact-strip">
+      <div class="contact-item">📍 Serving Irving & DFW</div>
+      <div class="contact-item">👩‍💼 Woman-Owned Business</div>
+      <div class="contact-item">✅ WBE Certification In Progress</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="reggae-footer-bar"><span></span><span></span><span></span></div>
+  <div class="footer-logo">YouMove <span>Mobility</span> Scooter</div>
+  <p>© 2026 YouMove Mobility Scooter · DFW, Texas · All Rights Reserved</p>
+  <p style="margin-top:0.5rem;">Replace [YourEmail] and [YourPhone] with your actual contact details before publishing.</p>
+</footer>
+
+</body>
+</html>
